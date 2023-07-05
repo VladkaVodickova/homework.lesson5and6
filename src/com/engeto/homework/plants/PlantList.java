@@ -4,14 +4,22 @@ import javax.print.attribute.IntegerSyntax;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class PlantList {
+    WateringComparator wateringComparator = new WateringComparator();
     private List<Plant> plantList;
 
     public PlantList() {
         plantList = new ArrayList<>();
+    }
+
+    public List<Plant> getPlantList() {
+        return plantList;
+    }
+
+    public void setPlantList(List<Plant> plantList) {
+        this.plantList = plantList;
     }
 
     public void addPlant (Plant plant){
@@ -67,6 +75,25 @@ public class PlantList {
         return wateringInfo.toString();
     }
 
+    public String getPlantedLastMonthInfo(){
+        Set<LocalDate> uniquePlantingDates = new HashSet<>();
+        LocalDate lastMonth = LocalDate.now().minusMonths(1);
+        for (Plant plant : plantList) {
+            if (plant.getPlanted().isAfter(lastMonth) || plant.getPlanted().equals(lastMonth)){
+                uniquePlantingDates.add(plant.getPlanted());
+            }
+        }
+        return uniquePlantingDates.toString();
+    }
+
+    public String getPlantedInfo(){
+        Set<LocalDate> uniquePlantingDates = new HashSet<>();
+        for (Plant plant : plantList) {
+            uniquePlantingDates.add(plant.getPlanted());
+                    }
+        return uniquePlantingDates.toString();
+    }
+
     public Plant getFlowerByName(String name){
         for (Plant plant: plantList){
             if (plant.getName().equals(name)){
@@ -74,5 +101,13 @@ public class PlantList {
             }
         }
         return null;
+    }
+
+    public void sortPlantsByName() {
+        Collections.sort(plantList);
+    }
+
+    public void sortPlantsByLastWatered() {
+        plantList.sort(wateringComparator);
     }
 }

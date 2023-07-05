@@ -3,7 +3,7 @@ package com.engeto.homework.plants;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Plant {
+public class Plant implements Comparable<Plant>{
     private String name;
     private String notes;
     private LocalDate planted;
@@ -88,5 +88,10 @@ public class Plant {
     public String getWateringInfo(){
         LocalDate nextWatering = watering.plusDays(frequencyOfWatering);
         return "Flower: "+ name + "\nLast watering: " + watering + "\nNext watering: " + nextWatering;
+    }
+
+    @Override
+    public int compareTo(Plant otherPlant) {
+        return this.name.compareTo(otherPlant.getName());
     }
 }
