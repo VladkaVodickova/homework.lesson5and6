@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) throws IOException, PlantException {
         PlantList plantList = new PlantList();
-        plantList.loadPlantsFromFile("C:/Users/vladk/IdeaProjects/homework.lesson5and6/kvetiny-spatne-frekvence.txt");
+        plantList.loadPlantsFromFile("C:/Users/xxx/IdeaProjects/homework.lesson5and6/kvetiny-spatne-frekvence.txt");
 
         //plantList.addPlant(new Plant("Lilie"));
         //plantList.addPlant(new Plant("Koriandr", LocalDate.now(),5));
